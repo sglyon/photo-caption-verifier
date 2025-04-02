@@ -1,8 +1,6 @@
 import streamlit as st
-from model import verify_image_caption
+from model import verify_pil_image_caption
 from PIL import Image
-import tempfile
-import os
 
 
 st.set_page_config(
@@ -56,21 +54,14 @@ with col2:
         else:
             with st.spinner("Verifying caption..."):
                 try:
-                    # Create a temporary file with the correct extension
-                    file_extension = os.path.splitext(uploaded_file.name)[1]
-                    with tempfile.NamedTemporaryFile(
-                        delete=False, suffix=file_extension
-                    ) as temp_file:
-                        temp_file.write(uploaded_file.getvalue())
-                        temp_file.flush()
+                    # The 'image' variable already holds the PIL Image object
+                    # from the 'if uploaded_file is not None:' block above.
+                    result = verify_pil_image_caption(
+                        image, caption, instructions
+                    )
 
-                        # Verify the caption
-                        result = verify_image_caption(
-                            temp_file.name, caption, instructions
-                        )
-
-                        # Display the result
-                        st.markdown("### Verification Result")
+                    # Display the result
+                    st.markdown("### Verification Result")
                         st.write(result["verification"])
 
                         # Display additional information in an expander
@@ -85,12 +76,6 @@ with col2:
 
                 except Exception as e:
                     st.error(f"Error: {str(e)}")
-                finally:
-                    # Clean up the temporary file
-                    try:
-                        os.unlink(temp_file.name)
-                    except Exception as _e:
-                        pass  # Ignore errors during cleanup
 
 # Add a footer
 st.markdown("---")
