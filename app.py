@@ -62,10 +62,10 @@ with col2:
 
                     # Display the result
                     st.markdown("### Verification Result")
-                        st.write(result["verification"])
+                    st.write(result["verification"])
 
-                        # Display additional information in an expander
-                        with st.expander("Show Details"):
+                    # Display additional information in an expander
+                    with st.expander("Show Details"):
                             st.json(
                                 {
                                     "model": result["raw_response"].model,
