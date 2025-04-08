@@ -1,0 +1,38 @@
+# Git files
+.git
+.gitignore
+
+# Python cache and virtual environment files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# IDE and OS files
+.idea/
+.vscode/
+*.DS_Store
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Test files and reports (if any)
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Secrets
+.env
+
+# Other
+*.lock
+*.log
+*.png
+*.jpg
+test_server.ipynb
