@@ -44,7 +44,7 @@ with col2:
 
     instructions = st.text_area(
         "Additional instructions (optional)",
-        value="Please check if the colors and composition match the caption. Your response must start with 'correct' or 'incorrect'.",
+        value="Please check if the colors and composition match the caption in a super sarcastic tone. Your response must start with 'correct' or 'incorrect'.",
         height=100,
     )
 
